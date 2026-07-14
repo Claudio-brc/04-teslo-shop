@@ -14,12 +14,14 @@
 docker-compose up -d
 ``` 
 
-6. Ejecutar SEED
+6. levantar: ```npm run: dev```
+
+7. Ejecutar SEED
 ```
 localhost:3001/api/seed
 ``` 
 
-7. levantar: ```npm run: dev```
+
 
 
 
