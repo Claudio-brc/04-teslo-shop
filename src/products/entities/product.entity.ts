@@ -36,6 +36,16 @@ export class Product {
         unique: true
     })
     slug!: string;
+
+    @ApiProperty({
+      example: 10,
+      description: 'Product stock',
+      default: 0 
+    })     
+    @Column('int', {
+        default: 0
+    })
+    stock!: number;
     
     @ApiProperty()     
     @Column('text',{
