@@ -77,7 +77,7 @@ Copy-Item .env.template .env
 4. Review and update the values in `.env`:
 
 ```env
-DB_PASSWORD=123456
+DB_PASSWORD=your_password
 DB_NAME=teslodb
 DB_HOST=localhost
 DB_PORT=5433
