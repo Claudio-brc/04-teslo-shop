@@ -18,7 +18,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('Teslo RESTFul API')
-    .setDescription('The cats API description')
+    .setDescription('REST API for managing the Teslo Shop product catalog')
     .setVersion('1.0')
     .build();
   const document = () => SwaggerModule.createDocument(app, config);

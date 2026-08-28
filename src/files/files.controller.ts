@@ -6,6 +6,7 @@ import { diskStorage } from 'multer';
 import { fileNamer, fileFilter  } from './helpers';
 import express from 'express';
 import { ConfigService } from '@nestjs/config';
+import { Auth } from '../auth/decorators';
 
 @Controller('files')
 export class FilesController {
@@ -25,9 +26,10 @@ export class FilesController {
   }
 
   @Post('product')
+  @Auth()
   @UseInterceptors( FileInterceptor('file',{
     fileFilter: fileFilter,
-   // limits: { fileSize: 100}
+   limits: { fileSize: 5_000_000 },
    storage: diskStorage({
      destination: './static/products',
      filename: fileNamer 

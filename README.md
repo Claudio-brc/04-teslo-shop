@@ -12,9 +12,9 @@ The project includes JWT authentication, role-based authorization, product manag
 
 ## About this project
 
-This project was developed by following Fernando Herrera's course **"Nest: Desarrollo backend escalable con Node"**.
+This project is being developed while following Fernando Herrera's course **"Nest: Desarrollo backend escalable con Node"**.
 
-It is intended as a practical learning project for building scalable back-end applications with NestJS and its ecosystem.
+The project is still in progress and will continue evolving as the course advances. It is intended as a practical learning project for building scalable back-end applications with NestJS and its ecosystem.
 
 ## Tech stack
 

@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { existsSync } from 'fs';
-import { join } from 'path';
+import { isAbsolute, relative, resolve } from 'path';
 
 
 
@@ -9,12 +9,17 @@ export class FilesService {
 
     getStaticProductImage ( imageName: string ) {
 
-      const path = join( __dirname, '../../static/products', imageName);
+      const imagesDirectory = resolve(__dirname, '../../static/products');
+      const imagePath = resolve(imagesDirectory, imageName);
+      const relativeImagePath = relative(imagesDirectory, imagePath);
 
-      if (!existsSync(path))
-        throw new BadRequestException(`No product found with image $ { imageName}`);
+      if (relativeImagePath.startsWith('..') || isAbsolute(relativeImagePath))
+        throw new BadRequestException('Invalid image name');
+
+      if (!existsSync(imagePath))
+        throw new BadRequestException(`No product found with image ${imageName}`);
         
-      return path;
+      return imagePath;
 
     }
 
