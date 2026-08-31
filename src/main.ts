@@ -7,24 +7,25 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const logger = new Logger('Bootstap');
 
-  app.useGlobalPipes(  
-  new ValidationPipe({ 
-    whitelist: true, 
-    forbidNonWhitelisted: true, 
-  }) 
-);
-  
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+    }),
+  );
+
   app.setGlobalPrefix('api');
 
   const config = new DocumentBuilder()
     .setTitle('Teslo RESTFul API')
     .setDescription('REST API for managing the Teslo Shop product catalog')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
   const document = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
   await app.listen(process.env.PORT ?? 3001);
-  logger.log(`App running on port ${ process.env.PORT }`);
+  logger.log(`App running on port ${process.env.PORT}`);
 }
-bootstrap();
+void bootstrap();

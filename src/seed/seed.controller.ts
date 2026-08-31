@@ -1,20 +1,21 @@
-import { Controller, Get} from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { SeedService } from './seed.service';
-import { ValidRoles } from '../auth/interfaces';
-import { Auth } from '../auth/decorators';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 
-@ApiTags('Files - Get and Upload')
+@ApiTags('Seed')
 @Controller('seed')
 export class SeedController {
-  constructor(private readonly seedService: SeedService){}
+  constructor(private readonly seedService: SeedService) {}
 
   @Get()
-  //@Auth( ValidRoles.admin )
-  executeSeed(){
-     return this.seedService.runSeed()
+  @ApiOperation({
+    summary: 'Reset the database and load the initial catalog',
+  })
+  @ApiOkResponse({
+    description: 'Seed completed successfully',
+    schema: { type: 'string', example: 'SEED EXECUTED' },
+  })
+  executeSeed() {
+    return this.seedService.runSeed();
   }
-
-
-
 }

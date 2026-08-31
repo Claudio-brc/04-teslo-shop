@@ -1,20 +1,20 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Product } from './product.entity';
+import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
 
-
-@Entity( { name: 'product_images' } )
+@Entity({ name: 'product_images' })
 export class ProductImage {
-    
-    @PrimaryGeneratedColumn()
-    id!: number;
+  @ApiProperty({ example: 1 })
+  @PrimaryGeneratedColumn()
+  id!: number;
 
-    @Column('text')
-    url!: string;
+  @ApiProperty({ example: 'products/teslo-shirt-front.jpg' })
+  @Column('text')
+  url!: string;
 
-    @ManyToOne(
-        ()  => Product,
-        ( product )  => product.images,
-        { onDelete: 'CASCADE' }
-    )
-    product!: Product;
+  @ApiHideProperty()
+  @ManyToOne(() => Product, (product) => product.images, {
+    onDelete: 'CASCADE',
+  })
+  product!: Product;
 }
